@@ -1,5 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude
+CFLAGS = -std=c99 -Wall -Werror -Wextra -Iinclude -O2
+# -flto 
 LIB_DIR = lib
 LIB_NAME = arena
 LIB = $(LIB_DIR)/lib$(LIB_NAME).a
