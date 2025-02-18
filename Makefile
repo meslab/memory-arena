@@ -38,7 +38,11 @@ run_static: test_static
 run_shared: test_shared
 	LD_LIBRARY_PATH=$(LIB_DIR) ./$(TEST_SHARED_BIN)
 
+test: run_static run_shared
+
 # Clean build artifacts
 clean:
 	rm -rf $(LIB_DIR)/*.o $(STATIC_LIB) $(SHARED_LIB) $(TEST_STATIC_BIN) $(TEST_SHARED_BIN)
+
+.PHONY: all test_arena_shared test_arena_static test clean run_shared run_static
 
