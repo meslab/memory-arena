@@ -19,4 +19,7 @@ test: $(LIB) test/test_arena.c
 clean:
 	rm -rf $(LIB_DIR)
 
-.PHONY: all clean
+runtest: all
+	lib/test_arena
+
+.PHONY: all clean test runtest
