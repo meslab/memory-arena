@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=c99 -Wall -Werror -Wextra -Iinclude -O2 -flto -fPIC
+CFLAGS = -Wall -Werror -Wextra -Iinclude -O2 -flto -fPIC
 LIB_DIR = lib
 INCLUDE_DIR = include
 LIB_NAME = arena
