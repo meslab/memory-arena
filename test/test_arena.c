@@ -1,18 +1,6 @@
 #include "../include/arena.h"
+#include "../include/int32array.h"
 #include <stdio.h>
-
-typedef struct {
-  int32_t *items;
-  int32_t length;
-  int32_t capacity;
-} Int32Array;
-
-int Int32Array_get(Int32Array array, int32_t index) {
-  if (index >= 0 && index < array.length) {
-    return array.items[index];
-  }
-  return 0;
-}
 
 int main() {
   MemoryArena arena;
