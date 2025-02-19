@@ -1,5 +1,7 @@
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -Iinclude -O2 -flto -fPIC
+CFLAGS = -Wall -Werror -Wextra -fPIC
+CFLAGS_RELEASE = -O2 -flto
+CFLAGS_DEBUG = -g
 LIB_DIR = lib
 INCLUDE_DIR = include
 LIB_NAME = arena
@@ -24,20 +26,20 @@ $(STATIC_LIB): $(OBJ_FILES)
 
 # Compile each .c file into .o inside the lib directory
 $(LIB_DIR)/%.o: src/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CFLAGS_RELEASE) -c $< -o $@
 
 # Build shared library
 $(SHARED_LIB): $(wildcard src/*.c)
 	mkdir -p $(LIB_DIR)
-	$(CC) $(CFLAGS) -shared -o $(SHARED_LIB) $^
+	$(CC) $(CFLAGS) $(CFLAGS_RELEASE) -shared -o $(SHARED_LIB) $^
 
 # Test with static library
 test_static: $(STATIC_LIB) $(TEST_SRC)
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(TEST_SRC) $(STATIC_LIB) -o $(TEST_STATIC_BIN)
+	$(CC) $(CFLAGS) $(CFLAGS_RELEASE) -I$(INCLUDE_DIR) $(TEST_SRC) $(STATIC_LIB) -o $(TEST_STATIC_BIN)
 
 # Test with shared library
 test_shared: $(SHARED_LIB) $(TEST_SRC)
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(TEST_SRC) -L$(LIB_DIR) -l$(LIB_NAME) -o $(TEST_SHARED_BIN)
+	$(CC) $(CFLAGS) $(CFLAGS_RELEASE) -I$(INCLUDE_DIR) $(TEST_SRC) -L$(LIB_DIR) -l$(LIB_NAME) -o $(TEST_SHARED_BIN)
 
 # Run tests
 run_static: test_static
