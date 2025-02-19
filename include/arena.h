@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stddef.h>
 
-typedef struct {
+typedef struct MemoryArena {
     uint8_t *buffer;
     size_t size;
     size_t offset;
