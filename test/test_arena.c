@@ -44,18 +44,20 @@ int main() {
   int_struct_array->items = (int32_t *)arena_alloc(
       &arena, int_struct_array->capacity * sizeof(int32_t));
 
-  printf("%ld\n", sizeof(int_struct_array));
+  printf("Int32Array size: %ld\n", sizeof(int_struct_array));
+  printf("Array length before: %d\n", int_struct_array->length);
 
-  for (int i = 0; i < int_struct_array->capacity;) {
-    int_struct_array->items[i] = i * 2;
-    int_struct_array->length = ++i;
+  for (int i = 0; i < int_struct_array->capacity; i++) {
+    Int32Array_push(int_struct_array, i * 2);
   }
 
-  printf("%d\n", int_struct_array->length);
+  printf("Array length after: %d\n", int_struct_array->length);
+  printf("Array capacity: %d\n", int_struct_array->length);
 
   for (int i = 0; i < int_struct_array->length; i++) {
     printf("%d ", Int32Array_get(*int_struct_array, i));
   }
+  Int32Array_iterate(*int_struct_array);
   printf("\n");
 
   // Clean up
