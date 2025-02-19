@@ -56,6 +56,13 @@ int main() {
   Int32Array_iterate(*int_struct_array);
   printf("\n");
 
+  for (int i = int_struct_array->length; i > 0; i--) {
+    int item = Int32Array_pop(int_struct_array);
+    printf("%d ", item);
+  }
+  printf("\n");
+  printf("Array length after: %d\n", int_struct_array->length);
+
   // Clean up
   arena_free(&arena);
   return 0;

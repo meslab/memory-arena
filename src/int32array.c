@@ -32,3 +32,8 @@ Int32Array *Int32Array_create(MemoryArena arena, int32_t capacity) {
 
   return int_struct_array;
 }
+
+int32_t Int32Array_pop(Int32Array *array) {
+  int item = array->items[--array->length];
+  return item;
+}
