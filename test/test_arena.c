@@ -36,13 +36,7 @@ int main() {
   snprintf(str, 50, "Hello, Memory Arena!");
   printf("String: %s\n", str);
 
-  Int32Array *int_struct_array =
-      (Int32Array *)arena_alloc(&arena, 12 * sizeof(Int32Array));
-
-  int_struct_array->capacity = 10;
-  int_struct_array->length = 0;
-  int_struct_array->items = (int32_t *)arena_alloc(
-      &arena, int_struct_array->capacity * sizeof(int32_t));
+  Int32Array *int_struct_array = Int32Array_create(arena, 10);
 
   printf("Int32Array size: %ld\n", sizeof(int_struct_array));
   printf("Array length before: %d\n", int_struct_array->length);
@@ -57,6 +51,8 @@ int main() {
   for (int i = 0; i < int_struct_array->length; i++) {
     printf("%d ", Int32Array_get(*int_struct_array, i));
   }
+  printf("\n");
+
   Int32Array_iterate(*int_struct_array);
   printf("\n");
 
