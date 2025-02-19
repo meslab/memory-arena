@@ -1,6 +1,7 @@
 #include "../include/arena.h"
 #include "../include/int32array.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
   MemoryArena arena;
@@ -36,6 +37,7 @@ int main() {
   snprintf(str, 50, "Hello, Memory Arena!");
   printf("String: %s\n", str);
 
+  int32_t *value = (int32_t *)arena_alloc(&arena, sizeof(int32_t));
   Int32Array *int_struct_array = Int32Array_create(arena, 10);
 
   printf("Int32Array size: %ld\n", sizeof(int_struct_array));
@@ -56,9 +58,13 @@ int main() {
   Int32Array_iterate(*int_struct_array);
   printf("\n");
 
+  if (!value) {
+    perror("Allocation failed");
+  }
+
   for (int i = int_struct_array->length; i > 0; i--) {
-    int item = Int32Array_pop(int_struct_array);
-    printf("%d ", item);
+    Int32Array_pop(int_struct_array, value);
+    printf("%d ", *value);
   }
   printf("\n");
   printf("Array length after: %d\n", int_struct_array->length);
