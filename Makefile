@@ -10,15 +10,21 @@ TEST_SRC = $(wildcard test/*.c)
 TEST_STATIC_BIN = $(LIB_DIR)/test_arena_static
 TEST_SHARED_BIN = $(LIB_DIR)/test_arena_shared
 
+# Gather all source files automatically
+SRC_FILES := $(wildcard src/*.c)
+OBJ_FILES := $(patsubst src/%.c, $(LIB_DIR)/%.o, $(SRC_FILES))
+
 # Targets
 all: $(STATIC_LIB) $(SHARED_LIB) test_static test_shared
 
 # Build static library
-$(STATIC_LIB): $(wildcard src/*.c)
+$(STATIC_LIB): $(OBJ_FILES)
 	mkdir -p $(LIB_DIR)
-	$(CC) $(CFLAGS) -c $^
-	ar rcs $(STATIC_LIB) *.o
-	rm -f *.o
+	ar rcs $(STATIC_LIB) $(OBJ_FILES)
+
+# Compile each .c file into .o inside the lib directory
+$(LIB_DIR)/%.o: src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Build shared library
 $(SHARED_LIB): $(wildcard src/*.c)
