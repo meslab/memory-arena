@@ -3,41 +3,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
-  MemoryArena arena;
-  arena_init(&arena, 1024 * 1024); // 1 MB arena
+void int_array_print(int *array) {
+  printf("Int array: ");
+  size_t array_length = sizeof(*array) / sizeof(array[0]);
+  for (size_t i = 0; i < array_length; i++) {
+    printf("%d ", array[i]);
+  }
+  printf("\n");
+}
 
-  // Test allocations
-  int *int_array = (int *)arena_alloc(&arena, 10 * sizeof(int));
-  for (int i = 0; i < 10; i++) {
+void double_array_print(double *array) {
+  printf("Int array: ");
+  size_t array_length = sizeof(*array) / sizeof(array[0]);
+  for (size_t i = 0; i < array_length; i++) {
+    printf("%.2f ", array[i]);
+  }
+  printf("\n");
+}
+
+void test_allocations(MemoryArena *arena, int32_t size) {
+  int *int_array = (int *)arena_alloc(arena, size * sizeof(int));
+  for (int i = 0; i < size; i++) {
     int_array[i] = i;
   }
 
-  double *double_array = (double *)arena_alloc(&arena, 5 * sizeof(double));
-  for (int i = 0; i < 5; i++) {
+  int_array_print(int_array);
+
+  double *double_array = (double *)arena_alloc(arena, size * sizeof(double));
+  for (int i = 0; i < size; i++) {
     double_array[i] = i * 1.0;
   }
 
-  // Print array_lengths
-  printf("Int array: ");
-  for (int i = 0; i < 10; i++) {
-    printf("%d ", int_array[i]);
-  }
-  printf("\n");
+  double_array_print(double_array);
+}
 
-  printf("Double array: ");
-  for (int i = 0; i < 5; i++) {
-    printf("%.2f ", double_array[i]);
-  }
-  printf("\n");
-
-  // Reset and reuse the arena
-  arena_reset(&arena);
-  char *str = (char *)arena_alloc(&arena, 50);
-  snprintf(str, 50, "Hello, Memory Arena!");
-  printf("String: %s\n", str);
-
-  Int32Array *int32_array = Int32Array_create(&arena, 10);
+void test_int32_array(MemoryArena *arena, size_t size) {
+  Int32Array *int32_array = Int32Array_create(arena, size);
 
   printf("Int32Array size: %ld\n", sizeof(int32_array));
   printf("Array length before push: %d\n", int32_array->length);
@@ -63,7 +64,7 @@ int main() {
          "%ld\n",
          array_length);
 
-  int32_t *value = (int32_t *)arena_alloc(&arena, sizeof(int32_t));
+  int32_t *value = (int32_t *)arena_alloc(arena, sizeof(int32_t));
   if (!value) {
     perror("Allocation failed");
   }
@@ -79,6 +80,21 @@ int main() {
          array_length);
 
   printf("Array length after pop: %d\n", int32_array->length);
+}
+
+int main() {
+  MemoryArena arena;
+  arena_init(&arena, 1024 * 1024); // 1 MB arena
+
+  test_allocations(&arena, 10);
+
+  arena_reset(&arena);
+
+  char *str = (char *)arena_alloc(&arena, 50);
+  snprintf(str, 50, "Hello, Memory Arena!");
+  printf("String: %s\n", str);
+
+  test_int32_array(&arena, 10);
 
   // Clean up
   arena_free(&arena);
