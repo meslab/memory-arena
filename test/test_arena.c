@@ -3,19 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void int_array_print(int *array) {
+void int_array_print(int *array, size_t size) {
   printf("Int array: ");
-  size_t array_length = sizeof(*array) / sizeof(array[0]);
-  for (size_t i = 0; i < array_length; i++) {
+  for (size_t i = 0; i < size; i++) {
     printf("%d ", array[i]);
   }
   printf("\n");
 }
 
-void double_array_print(double *array) {
+void double_array_print(double *array, size_t size) {
   printf("Int array: ");
-  size_t array_length = sizeof(*array) / sizeof(array[0]);
-  for (size_t i = 0; i < array_length; i++) {
+  for (size_t i = 0; i < size; i++) {
     printf("%.2f ", array[i]);
   }
   printf("\n");
@@ -27,14 +25,14 @@ void test_allocations(MemoryArena *arena, int32_t size) {
     int_array[i] = i;
   }
 
-  int_array_print(int_array);
+  int_array_print(int_array, size);
 
   double *double_array = (double *)arena_alloc(arena, size * sizeof(double));
   for (int i = 0; i < size; i++) {
     double_array[i] = i * 1.0;
   }
 
-  double_array_print(double_array);
+  double_array_print(double_array, size);
 }
 
 void test_int32_array(MemoryArena *arena, size_t size) {
