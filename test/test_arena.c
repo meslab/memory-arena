@@ -37,7 +37,6 @@ int main() {
   snprintf(str, 50, "Hello, Memory Arena!");
   printf("String: %s\n", str);
 
-  int32_t *value = (int32_t *)arena_alloc(&arena, sizeof(int32_t));
   Int32Array *int_struct_array = Int32Array_create(&arena, 10);
 
   printf("Int32Array size: %ld\n", sizeof(int_struct_array));
@@ -58,6 +57,7 @@ int main() {
   Int32Array_iterate(int_struct_array);
   printf("\n");
 
+  int32_t *value = (int32_t *)arena_alloc(&arena, sizeof(int32_t));
   if (!value) {
     perror("Allocation failed");
   }
