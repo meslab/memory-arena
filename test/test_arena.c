@@ -18,7 +18,7 @@ int main() {
     double_array[i] = i * 1.0;
   }
 
-  // Print results
+  // Print array_lengths
   printf("Int array: ");
   for (int i = 0; i < 10; i++) {
     printf("%d ", int_array[i]);
@@ -57,6 +57,12 @@ int main() {
   Int32Array_iterate(int_struct_array);
   printf("\n");
 
+  size_t array_length;
+  array_length = Int32Array_push(int_struct_array, 10);
+  printf("An attempt to push beyond the array capacity\narray_length = "
+         "%ld\n",
+         array_length);
+
   int32_t *value = (int32_t *)arena_alloc(&arena, sizeof(int32_t));
   if (!value) {
     perror("Allocation failed");
@@ -67,6 +73,11 @@ int main() {
     printf("%d ", *value);
   }
   printf("\n");
+
+  array_length = Int32Array_pop(int_struct_array, value);
+  printf("An attempt to pop an empty array\narray_length = %ld\n",
+         array_length);
+
   printf("Array length after pop: %d\n", int_struct_array->length);
 
   // Clean up
