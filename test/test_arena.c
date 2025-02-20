@@ -37,28 +37,28 @@ int main() {
   snprintf(str, 50, "Hello, Memory Arena!");
   printf("String: %s\n", str);
 
-  Int32Array *int_struct_array = Int32Array_create(&arena, 10);
+  Int32Array *int32_array = Int32Array_create(&arena, 10);
 
-  printf("Int32Array size: %ld\n", sizeof(int_struct_array));
-  printf("Array length before push: %d\n", int_struct_array->length);
+  printf("Int32Array size: %ld\n", sizeof(int32_array));
+  printf("Array length before push: %d\n", int32_array->length);
 
-  for (int i = 0; i < int_struct_array->capacity; i++) {
-    Int32Array_push(int_struct_array, i * 2);
+  for (int i = 0; i < int32_array->capacity; i++) {
+    Int32Array_push(int32_array, i * 2);
   }
 
-  printf("Array length after push: %d\n", int_struct_array->length);
-  printf("Array capacity: %d\n", int_struct_array->length);
+  printf("Array length after push: %d\n", int32_array->length);
+  printf("Array capacity: %d\n", int32_array->length);
 
-  for (int i = 0; i < int_struct_array->length; i++) {
-    printf("%d ", Int32Array_get(int_struct_array, i));
+  for (int i = 0; i < int32_array->length; i++) {
+    printf("%d ", Int32Array_get(int32_array, i));
   }
   printf("\n");
 
-  Int32Array_iterate(int_struct_array);
+  Int32Array_iterate(int32_array);
   printf("\n");
 
   size_t array_length;
-  array_length = Int32Array_push(int_struct_array, 10);
+  array_length = Int32Array_push(int32_array, 10);
   printf("An attempt to push beyond the array capacity\narray_length = "
          "%ld\n",
          array_length);
@@ -68,17 +68,17 @@ int main() {
     perror("Allocation failed");
   }
 
-  for (int i = int_struct_array->length; i > 0; i--) {
-    Int32Array_pop(int_struct_array, value);
+  for (int i = int32_array->length; i > 0; i--) {
+    Int32Array_pop(int32_array, value);
     printf("%d ", *value);
   }
   printf("\n");
 
-  array_length = Int32Array_pop(int_struct_array, value);
+  array_length = Int32Array_pop(int32_array, value);
   printf("An attempt to pop an empty array\narray_length = %ld\n",
          array_length);
 
-  printf("Array length after pop: %d\n", int_struct_array->length);
+  printf("Array length after pop: %d\n", int32_array->length);
 
   // Clean up
   arena_free(&arena);
