@@ -40,13 +40,13 @@ int main() {
   Int32Array *int_struct_array = Int32Array_create(&arena, 10);
 
   printf("Int32Array size: %ld\n", sizeof(int_struct_array));
-  printf("Array length before: %d\n", int_struct_array->length);
+  printf("Array length before push: %d\n", int_struct_array->length);
 
   for (int i = 0; i < int_struct_array->capacity; i++) {
     Int32Array_push(int_struct_array, i * 2);
   }
 
-  printf("Array length after: %d\n", int_struct_array->length);
+  printf("Array length after push: %d\n", int_struct_array->length);
   printf("Array capacity: %d\n", int_struct_array->length);
 
   for (int i = 0; i < int_struct_array->length; i++) {
@@ -67,7 +67,7 @@ int main() {
     printf("%d ", *value);
   }
   printf("\n");
-  printf("Array length after: %d\n", int_struct_array->length);
+  printf("Array length after pop: %d\n", int_struct_array->length);
 
   // Clean up
   arena_free(&arena);
