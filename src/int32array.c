@@ -29,18 +29,17 @@ Int32Array *Int32Array_create(MemoryArena *arena, int32_t capacity) {
 }
 
 int8_t Int32Array_push(Int32Array *array, int32_t value) {
-  array->items[array->length] = value;
-  if (array->items[array->length] == value) {
-    array->length += 1;
-    return 1;
-  }
-  return 0;
+  if (!array || array->capacity <= array->length) {
+    return 0;
+  } // failure
+  array->items[array->length++] = value;
+  return 1; // success
 }
 
 int8_t Int32Array_pop(Int32Array *array, int32_t *value) {
-  if (array->length > 0) {
-    *value = array->items[--array->length];
-    return 1; // success
-  }
-  return 0; // failure
+  if (!array || !value || array->length == 0) {
+    return 0;
+  } // failure
+  *value = array->items[--array->length];
+  return 1; // success
 }
