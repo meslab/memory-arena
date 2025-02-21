@@ -1,25 +1,11 @@
 #include "../include/arena.h"
 #include "../include/int32array.h"
 
+#include "include/test_double_array.h"
+#include "include/test_int_array.h"
 #include "include/test_string.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-void int_array_print(int *array, size_t size) {
-  printf("Int array: ");
-  for (size_t i = 0; i < size; i++) {
-    printf("%d ", array[i]);
-  }
-  printf("\n");
-}
-
-void double_array_print(double *array, size_t size) {
-  printf("Int array: ");
-  for (size_t i = 0; i < size; i++) {
-    printf("%.2f ", array[i]);
-  }
-  printf("\n");
-}
 
 void test_allocations(MemoryArena *arena, int32_t size) {
   int *int_array = (int *)arena_alloc(arena, size * sizeof(int));
