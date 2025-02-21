@@ -3,6 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void test_string_allocation(MemoryArena *arena) {
+  char *str = (char *)arena_alloc(arena, 25);
+  snprintf(str, 25, "Hello, Memory Arena!");
+  printf("String: %s\n", str);
+}
+
 void int_array_print(int *array, size_t size) {
   printf("Int array: ");
   for (size_t i = 0; i < size; i++) {
@@ -88,9 +94,7 @@ int main() {
 
   arena_reset(&arena);
 
-  char *str = (char *)arena_alloc(&arena, 50);
-  snprintf(str, 50, "Hello, Memory Arena!");
-  printf("String: %s\n", str);
+  test_string_allocation(&arena);
 
   test_int32_array(&arena, 10);
 
