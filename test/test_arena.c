@@ -1,13 +1,9 @@
 #include "../include/arena.h"
 #include "../include/int32array.h"
+
+#include "include/test_string.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-void test_string_allocation(MemoryArena *arena) {
-  char *str = (char *)arena_alloc(arena, 25);
-  snprintf(str, 25, "Hello, Memory Arena!");
-  printf("String: %s\n", str);
-}
 
 void int_array_print(int *array, size_t size) {
   printf("Int array: ");
