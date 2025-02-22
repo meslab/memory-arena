@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -fPIC
 CFLAGS_RELEASE = -O2 -flto
 CFLAGS_DEBUG = -g
-BIN_DIR = bin
+BIN_DIR = test/bin
 LIB_DIR = lib
 INCLUDE_DIR = include
 LIB_NAME = arena
@@ -22,16 +22,15 @@ all: $(STATIC_LIB) $(SHARED_LIB) test_static test_shared
 
 # Build static library
 $(STATIC_LIB): $(OBJ_FILES)
-	mkdir -p $(LIB_DIR) $(BIN_DIR)
 	ar rcs $(STATIC_LIB) $(OBJ_FILES)
 
 # Compile each .c file into .o inside the lib directory
 $(LIB_DIR)/%.o: src/%.c
+	mkdir -p $(LIB_DIR) $(BIN_DIR)
 	$(CC) $(CFLAGS) $(CFLAGS_RELEASE) -c $< -o $@
 
 # Build shared library
 $(SHARED_LIB): $(wildcard src/*.c)
-	mkdir -p $(LIB_DIR) $(BIN_DIR)
 	$(CC) $(CFLAGS) $(CFLAGS_RELEASE) -shared -o $(SHARED_LIB) $^
 
 # Test with static library
@@ -53,6 +52,6 @@ test: run_static run_shared
 
 # Clean build artifacts
 clean:
-	rm -rf $(LIB_DIR)/*
+	rm -rf $(LIB_DIR) $(BIN_DIR)
 
 .PHONY: all test_arena_shared test_arena_static test clean run_shared run_static
