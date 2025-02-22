@@ -1,5 +1,5 @@
-#ifndef TEST_DOUBLE_ARRAY_H
-#define TEST_DOUBLE_ARRAY_H
+#ifndef TEST_DOUBLE_H
+#define TEST_DOUBLE_H
 
 #include <stdlib.h>
 

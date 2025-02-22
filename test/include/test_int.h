@@ -1,5 +1,5 @@
-#ifndef TEST_INT_ARRAY_H
-#define TEST_INT_ARRAY_H
+#ifndef TEST_INT_H
+#define TEST_INT_H
 
 #include <stdlib.h>
 
