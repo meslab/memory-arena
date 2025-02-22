@@ -1,5 +1,6 @@
 #include "../include/arena.h"
-#include "../include/int32array.h"
+#include "../include/double_array.h"
+#include "../include/int32_array.h"
 
 #include "include/test_double_array.h"
 #include "include/test_int_array.h"

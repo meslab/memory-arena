@@ -1,5 +1,5 @@
-#ifndef INT32ARRAY_H
-#define INT32ARRAY_H
+#ifndef INT32_ARRAY_H
+#define INT32_ARRAY_H
 
 #include "../include/arena.h"
 #include <stddef.h>
