@@ -1,4 +1,4 @@
-#include "include/test_int_array.h"
+#include "include/test_int.h"
 #include <stdio.h>
 
 void int_array_print(int *array, size_t size) {

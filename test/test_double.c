@@ -1,4 +1,4 @@
-#include "include/test_double_array.h"
+#include "include/test_double.h"
 #include <stdio.h>
 
 void double_array_print(double *array, size_t size) {
