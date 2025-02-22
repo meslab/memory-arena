@@ -14,20 +14,12 @@ void test_double_array(MemoryArena *arena, size_t size) {
 
   print_double_array_status(double_array);
 
-  for (int i = 0; i < double_array->length; i++) {
-    printf("%d ", DoubleArray_get(double_array, i));
-  }
-  printf("\n");
+  test_double_arra_get(double_array);
 
   DoubleArray_iterate(double_array);
   printf("\n");
 
-  size_t array_length;
-  array_length = DoubleArray_push(double_array, 10);
-  printf("An attempt to push beyond the array capacity\n");
-  if (!array_length) {
-    printf("Passed, return: %ld\n", array_length);
-  }
+  test_double_array_push(double_array);
 
   double *value = (double *)arena_alloc(arena, sizeof(int32_t));
   if (!value) {
@@ -40,10 +32,16 @@ void test_double_array(MemoryArena *arena, size_t size) {
   }
   printf("\n");
 
-  array_length = DoubleArray_pop(double_array, value);
+  DoubleArray_pop(double_array, value);
   print_double_array_status(double_array);
 }
 
+void test_double_arra_get(DoubleArray *double_array) {
+  for (int i = 0; i < double_array->length; i++) {
+    printf("%d ", DoubleArray_get(double_array, i));
+  }
+  printf("\n");
+}
 inline void test_populate_double_array(DoubleArray *double_array) {
   for (int i = 0; i < double_array->capacity; i++) {
     DoubleArray_push(double_array, i * 2);
@@ -54,4 +52,12 @@ inline void print_double_array_status(DoubleArray *double_array) {
   printf("DoubleArray size: %ld\n", sizeof(double_array));
   printf("Array length: %d\n", double_array->length);
   printf("Array capacity: %d\n", double_array->capacity);
+}
+
+void test_double_array_push(DoubleArray *double_array) {
+  size_t array_length = DoubleArray_push(double_array, 10);
+  printf("An attempt to push beyond the array capacity\n");
+  if (!array_length) {
+    printf("Passed, return: %ld\n", array_length);
+  }
 }
