@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 void test_int32_array(MemoryArena *arena, size_t size) {
+
   Int32Array *int32_array = Int32Array_create(arena, size);
 
   print_int32_array_status(int32_array);
@@ -14,20 +15,11 @@ void test_int32_array(MemoryArena *arena, size_t size) {
 
   print_int32_array_status(int32_array);
 
-  for (int i = 0; i < int32_array->length; i++) {
-    printf("%d ", Int32Array_get(int32_array, i));
-  }
-  printf("\n");
+  test_int32_array_get(int32_array);
 
-  Int32Array_iterate(int32_array);
-  printf("\n");
+  test_int32_array_iterate(int32_array);
 
-  size_t array_length;
-  array_length = Int32Array_push(int32_array, 10);
-  printf("An attempt to push beyond the array capacity\n");
-  if (!array_length) {
-    printf("Passed, return: %ld\n", array_length);
-  }
+  test_int32_array_push_overflow(int32_array);
 
   int32_t *value = (int32_t *)arena_alloc(arena, sizeof(int32_t));
   if (!value) {
@@ -40,8 +32,28 @@ void test_int32_array(MemoryArena *arena, size_t size) {
   }
   printf("\n");
 
-  array_length = Int32Array_pop(int32_array, value);
+  Int32Array_pop(int32_array, value);
   print_int32_array_status(int32_array);
+}
+
+void test_int32_array_iterate(Int32Array *int32_array) {
+  Int32Array_iterate(int32_array);
+  printf("\n");
+}
+void test_int32_array_get(Int32Array *int32_array) {
+  for (int i = 0; i < int32_array->length; i++) {
+    printf("%d ", Int32Array_get(int32_array, i));
+  }
+  printf("\n");
+}
+
+void test_int32_array_push_overflow(Int32Array *int32_array) {
+  size_t array_length;
+  array_length = Int32Array_push(int32_array, 10);
+  printf("An attempt to push beyond the array capacity\n");
+  if (!array_length) {
+    printf("Passed, return: %ld\n", array_length);
+  }
 }
 
 inline void test_populate_int32_array(Int32Array *int32_array) {
