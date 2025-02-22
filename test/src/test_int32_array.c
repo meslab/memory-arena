@@ -1,21 +1,18 @@
 #include "../../include/arena.h"
 #include "../../include/int32_array.h"
 
+#include "../include/test_int32_array.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 void test_int32_array(MemoryArena *arena, size_t size) {
   Int32Array *int32_array = Int32Array_create(arena, size);
 
-  printf("Int32Array size: %ld\n", sizeof(int32_array));
-  printf("Array length before push: %d\n", int32_array->length);
+  print_array_status(int32_array);
 
-  for (int i = 0; i < int32_array->capacity; i++) {
-    Int32Array_push(int32_array, i * 2);
-  }
+  test_populate_array(int32_array);
 
-  printf("Array length after push: %d\n", int32_array->length);
-  printf("Array capacity: %d\n", int32_array->length);
+  print_array_status(int32_array);
 
   for (int i = 0; i < int32_array->length; i++) {
     printf("%d ", Int32Array_get(int32_array, i));
@@ -43,8 +40,17 @@ void test_int32_array(MemoryArena *arena, size_t size) {
   printf("\n");
 
   array_length = Int32Array_pop(int32_array, value);
-  printf("An attempt to pop an empty array\narray_length = %ld\n",
-         array_length);
+  print_array_status(int32_array);
+}
 
-  printf("Array length after pop: %d\n", int32_array->length);
+inline void test_populate_array(Int32Array *int32_array) {
+  for (int i = 0; i < int32_array->capacity; i++) {
+    Int32Array_push(int32_array, i * 2);
+  }
+}
+
+inline void print_array_status(Int32Array *int32_array) {
+  printf("Int32Array size: %ld\n", sizeof(int32_array));
+  printf("Array length: %d\n", int32_array->length);
+  printf("Array capacity: %d\n", int32_array->capacity);
 }
