@@ -9,7 +9,8 @@ LIB_NAME = arena
 STATIC_LIB = $(LIB_DIR)/lib$(LIB_NAME).a
 SHARED_LIB = $(LIB_DIR)/lib$(LIB_NAME).so
 
-TEST_SRC = $(wildcard test/*.c)
+TEST_SRC = $(wildcard test/src/*.c)
+TEST_MAIN = $(wildcard test/*.c)
 TEST_STATIC_BIN = $(BIN_DIR)/test_arena_static
 TEST_SHARED_BIN = $(BIN_DIR)/test_arena_shared
 
@@ -35,11 +36,11 @@ $(SHARED_LIB): $(wildcard src/*.c)
 
 # Test with static library
 test_static: $(STATIC_LIB) $(TEST_SRC)
-	$(CC) $(CFLAGS) $(CFLAGS_RELEASE) -I$(INCLUDE_DIR) $(TEST_SRC) $(STATIC_LIB) -o $(TEST_STATIC_BIN)
+	$(CC) $(CFLAGS) $(CFLAGS_RELEASE) -I$(INCLUDE_DIR) $(TEST_SRC) $(TEST_MAIN) $(STATIC_LIB) -o $(TEST_STATIC_BIN)
 
 # Test with shared library
 test_shared: $(SHARED_LIB) $(TEST_SRC)
-	$(CC) $(CFLAGS) $(CFLAGS_RELEASE) -I$(INCLUDE_DIR) $(TEST_SRC) -L$(LIB_DIR) -l$(LIB_NAME) -o $(TEST_SHARED_BIN)
+	$(CC) $(CFLAGS) $(CFLAGS_RELEASE) -I$(INCLUDE_DIR) $(TEST_SRC) $(TEST_MAIN) -L$(LIB_DIR) -l$(LIB_NAME) -o $(TEST_SHARED_BIN)
 
 # Run tests
 run_static: test_static

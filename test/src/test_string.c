@@ -1,4 +1,4 @@
-#include "include/test_string.h"
+#include "../include/test_string.h"
 #include <stdio.h>
 
 void test_string_allocation(MemoryArena *arena) {
