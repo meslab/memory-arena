@@ -3,4 +3,9 @@
 
 #include <stdlib.h>
 
+void test_double_array(MemoryArena *arena, size_t size);
+
+void test_populate_double_array(DoubleArray *double_array);
+void print_double_array_status(DoubleArray *double_array);
+
 #endif

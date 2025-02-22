@@ -8,11 +8,11 @@
 void test_int32_array(MemoryArena *arena, size_t size) {
   Int32Array *int32_array = Int32Array_create(arena, size);
 
-  print_array_status(int32_array);
+  print_int32_array_status(int32_array);
 
-  test_populate_array(int32_array);
+  test_populate_int32_array(int32_array);
 
-  print_array_status(int32_array);
+  print_int32_array_status(int32_array);
 
   for (int i = 0; i < int32_array->length; i++) {
     printf("%d ", Int32Array_get(int32_array, i));
@@ -40,16 +40,16 @@ void test_int32_array(MemoryArena *arena, size_t size) {
   printf("\n");
 
   array_length = Int32Array_pop(int32_array, value);
-  print_array_status(int32_array);
+  print_int32_array_status(int32_array);
 }
 
-inline void test_populate_array(Int32Array *int32_array) {
+inline void test_populate_int32_array(Int32Array *int32_array) {
   for (int i = 0; i < int32_array->capacity; i++) {
     Int32Array_push(int32_array, i * 2);
   }
 }
 
-inline void print_array_status(Int32Array *int32_array) {
+inline void print_int32_array_status(Int32Array *int32_array) {
   printf("Int32Array size: %ld\n", sizeof(int32_array));
   printf("Array length: %d\n", int32_array->length);
   printf("Array capacity: %d\n", int32_array->capacity);

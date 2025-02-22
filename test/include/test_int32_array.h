@@ -7,7 +7,7 @@
 
 void test_int32_array(MemoryArena *arena, size_t size);
 
-void test_populate_array(Int32Array *int32_array);
-void print_array_status(Int32Array *int32_array);
+void test_populate_int32_array(Int32Array *int32_array);
+void print_int32_array_status(Int32Array *int32_array);
 
 #endif

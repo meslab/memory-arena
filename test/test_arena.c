@@ -39,6 +39,8 @@ int main() {
 
   test_int32_array(&arena, 10);
 
+  test_double_array(&arena, 10);
+
   // Clean up
   arena_free(&arena);
   return 0;
