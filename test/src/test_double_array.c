@@ -24,9 +24,10 @@ void test_double_array(MemoryArena *arena, size_t size) {
 
   size_t array_length;
   array_length = DoubleArray_push(double_array, 10);
-  printf("An attempt to push beyond the array capacity\narray_length = "
-         "%ld\n",
-         array_length);
+  printf("An attempt to push beyond the array capacity\n");
+  if (!array_length) {
+    printf("Passed, return: %ld\n", array_length);
+  }
 
   double *value = (double *)arena_alloc(arena, sizeof(int32_t));
   if (!value) {
