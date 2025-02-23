@@ -14,5 +14,6 @@ void arena_init(MemoryArena *arena, size_t size);
 void *arena_alloc(MemoryArena *arena, size_t size);
 void arena_reset(MemoryArena *arena);
 void arena_free(MemoryArena *arena);
+void arena_debug(MemoryArena *arena);
 
 #endif // ARENA_H

@@ -6,3 +6,8 @@ void test_string_allocation(MemoryArena *arena) {
   snprintf(str, 25, "Hello, Memory Arena!");
   printf("String: %s\n", str);
 }
+
+void test_string_new(MemoryArena *arena) {
+  String *string = (String *)String_new(arena, "Hi there! I am a String!");
+  printf("%s\n", string->chars);
+}

@@ -31,17 +31,29 @@ int main() {
   MemoryArena arena;
   arena_init(&arena, 1024 * 1024); // 1 MB arena
 
+  arena_debug(&arena);
   test_allocations(&arena, 10);
 
+  test_string_new(&arena);
+
+  arena_debug(&arena);
   arena_reset(&arena);
+
+  arena_debug(&arena);
+  test_string_new(&arena);
 
   test_string_allocation(&arena);
 
   test_int32_array(&arena, 10);
 
+  arena_debug(&arena);
   test_double_array(&arena, 10);
 
-  // Clean up
+  arena_debug(&arena);
+  test_string_new(&arena);
+
+  arena_debug(&arena);
+
   arena_free(&arena);
   return 0;
 }

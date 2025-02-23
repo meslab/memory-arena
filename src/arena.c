@@ -30,3 +30,7 @@ void arena_free(MemoryArena *arena) {
   arena->size = 0;
   arena->offset = 0;
 }
+
+void arena_debug(MemoryArena *arena) {
+  printf("Arena size: %ld, offset: %ld\n", arena->size, arena->offset);
+}

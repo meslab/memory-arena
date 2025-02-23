@@ -1,7 +1,10 @@
 #ifndef TEST_STRING_H
 #define TEST_STRING_H
 #include "../include/arena.h"
+#include "../include/string.h"
 
 void test_string_allocation(MemoryArena *arena);
+
+void test_string_new(MemoryArena *arena);
 
 #endif
