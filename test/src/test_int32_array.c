@@ -42,7 +42,7 @@ void test_int32_array_iterate(Int32Array *int32_array) {
 }
 
 void test_int32_array_get(Int32Array *int32_array) {
-  for (int i = 0; i < int32_array->length; i++) {
+  for (size_t i = 0; i < int32_array->length; i++) {
     printf("%d ", Int32Array_get(int32_array, i));
   }
   printf("\n");
@@ -58,13 +58,13 @@ void test_int32_array_push_overflow(Int32Array *int32_array) {
 }
 
 inline void test_populate_int32_array(Int32Array *int32_array) {
-  for (int i = 0; i < int32_array->capacity; i++) {
+  for (size_t i = 0; i < int32_array->capacity; i++) {
     Int32Array_push(int32_array, i * 2);
   }
 }
 
 inline void print_int32_array_status(Int32Array *int32_array) {
   printf("Int32Array size: %ld\n", sizeof(int32_array));
-  printf("Array length: %d\n", int32_array->length);
-  printf("Array capacity: %d\n", int32_array->capacity);
+  printf("Array length: %ld\n", int32_array->length);
+  printf("Array capacity: %ld\n", int32_array->capacity);
 }
