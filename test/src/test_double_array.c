@@ -37,22 +37,22 @@ void test_double_array(MemoryArena *arena, size_t size) {
 }
 
 void test_double_arra_get(DoubleArray *double_array) {
-  for (int i = 0; i < double_array->length; i++) {
+  for (size_t i = 0; i < double_array->length; i++) {
     printf("%.2f ", DoubleArray_get(double_array, i));
   }
   printf("\n");
 }
 
 inline void test_populate_double_array(DoubleArray *double_array) {
-  for (int i = 0; i < double_array->capacity; i++) {
+  for (size_t i = 0; i < double_array->capacity; i++) {
     DoubleArray_push(double_array, i * 2);
   }
 }
 
 inline void print_double_array_status(DoubleArray *double_array) {
   printf("DoubleArray size: %ld\n", sizeof(double_array));
-  printf("Array length: %d\n", double_array->length);
-  printf("Array capacity: %d\n", double_array->capacity);
+  printf("Array length: %ld\n", double_array->length);
+  printf("Array capacity: %ld\n", double_array->capacity);
 }
 
 void test_double_array_push(DoubleArray *double_array) {

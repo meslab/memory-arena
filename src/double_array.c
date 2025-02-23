@@ -2,28 +2,28 @@
 #include "../include/arena.h"
 #include <stdio.h>
 
-double DoubleArray_get(DoubleArray *array, int32_t index) {
-  if (index >= 0 && index < array->length) {
+double DoubleArray_get(DoubleArray *array, size_t index) {
+  if (index < array->length) {
     return array->items[index];
   }
   return -1;
 }
 
 void DoubleArray_iterate(DoubleArray *array) {
-  for (int i = 0; i < array->length; i++) {
+  for (size_t i = 0; i < array->length; i++) {
     double item = DoubleArray_get(array, i);
     printf("%.2f ", item);
   }
 }
 
-DoubleArray *DoubleArray_create(MemoryArena *arena, int32_t capacity) {
+DoubleArray *DoubleArray_create(MemoryArena *arena, size_t capacity) {
   DoubleArray *array = (DoubleArray *)arena_alloc(arena, sizeof(DoubleArray));
   if (array == NULL) {
     return NULL;
   }
   array->capacity = capacity;
   array->length = 0;
-  array->items = (double *)arena_alloc(arena, capacity * sizeof(int32_t));
+  array->items = (double *)arena_alloc(arena, capacity * sizeof(size_t));
 
   return array;
 }

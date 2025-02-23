@@ -7,12 +7,12 @@
 
 typedef struct DoubleArray {
   double *items;
-  int32_t length;
-  int32_t capacity;
+  size_t length;
+  size_t capacity;
 } DoubleArray;
 
-DoubleArray *DoubleArray_create(MemoryArena *arena, int32_t capacity);
-double DoubleArray_get(DoubleArray *array, int32_t index);
+DoubleArray *DoubleArray_create(MemoryArena *arena, size_t capacity);
+double DoubleArray_get(DoubleArray *array, size_t index);
 void DoubleArray_iterate(DoubleArray *array);
 size_t DoubleArray_push(DoubleArray *array, double value);
 size_t DoubleArray_pop(DoubleArray *array, double *value);
