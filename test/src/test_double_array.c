@@ -42,6 +42,7 @@ void test_double_arra_get(DoubleArray *double_array) {
   }
   printf("\n");
 }
+
 inline void test_populate_double_array(DoubleArray *double_array) {
   for (int i = 0; i < double_array->capacity; i++) {
     DoubleArray_push(double_array, i * 2);

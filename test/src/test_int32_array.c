@@ -40,6 +40,7 @@ void test_int32_array_iterate(Int32Array *int32_array) {
   Int32Array_iterate(int32_array);
   printf("\n");
 }
+
 void test_int32_array_get(Int32Array *int32_array) {
   for (int i = 0; i < int32_array->length; i++) {
     printf("%d ", Int32Array_get(int32_array, i));
