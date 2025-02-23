@@ -17,4 +17,4 @@ void Int32Array_iterate(Int32Array *array);
 size_t Int32Array_push(Int32Array *array, int32_t value);
 size_t Int32Array_pop(Int32Array *array, int32_t *value);
 
-#endif // INT32ARRAY_H
+#endif // INT32_ARRAY_H
