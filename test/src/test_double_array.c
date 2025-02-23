@@ -38,7 +38,7 @@ void test_double_array(MemoryArena *arena, size_t size) {
 
 void test_double_arra_get(DoubleArray *double_array) {
   for (int i = 0; i < double_array->length; i++) {
-    printf("%d ", DoubleArray_get(double_array, i));
+    printf("%.2f ", DoubleArray_get(double_array, i));
   }
   printf("\n");
 }

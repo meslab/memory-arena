@@ -2,7 +2,7 @@
 #include "../include/arena.h"
 #include <stdio.h>
 
-int DoubleArray_get(DoubleArray *array, int32_t index) {
+double DoubleArray_get(DoubleArray *array, int32_t index) {
   if (index >= 0 && index < array->length) {
     return array->items[index];
   }
@@ -11,8 +11,8 @@ int DoubleArray_get(DoubleArray *array, int32_t index) {
 
 void DoubleArray_iterate(DoubleArray *array) {
   for (int i = 0; i < array->length; i++) {
-    int item = DoubleArray_get(array, i);
-    printf("%d ", item);
+    double item = DoubleArray_get(array, i);
+    printf("%.2f ", item);
   }
 }
 
