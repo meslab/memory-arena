@@ -10,7 +10,7 @@ void test_string_allocation(MemoryArena *arena) {
 void test_string_new(MemoryArena *arena) {
   String *string = (String *)String_new(arena, "Hi there! I am a String!");
   if (string) {
-    printf("%s\n", string->chars);
+    printf("%.*s\n", (int)string->length, string->chars);
   }
 }
 
