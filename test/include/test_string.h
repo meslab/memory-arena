@@ -6,5 +6,6 @@
 void test_string_allocation(MemoryArena *arena);
 
 void test_string_new(MemoryArena *arena);
+void test_string_slice(MemoryArena *arena);
 
 #endif

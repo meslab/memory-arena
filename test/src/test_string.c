@@ -9,5 +9,15 @@ void test_string_allocation(MemoryArena *arena) {
 
 void test_string_new(MemoryArena *arena) {
   String *string = (String *)String_new(arena, "Hi there! I am a String!");
-  printf("%s\n", string->chars);
+  if (string) {
+    printf("%s\n", string->chars);
+  }
+}
+
+void test_string_slice(MemoryArena *arena) {
+  String *string = (String *)String_new(arena, "Hi there! I am a String!");
+  String *slice = String_slice(arena, string, 10, 14);
+  if (slice) {
+    printf("%.*s\n", (int)slice->length, slice->chars);
+  }
 }

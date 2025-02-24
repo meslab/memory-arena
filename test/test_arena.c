@@ -52,6 +52,8 @@ int main() {
   arena_debug(&arena);
   test_string_new(&arena);
 
+  test_string_slice(&arena);
+
   arena_debug(&arena);
 
   arena_free(&arena);
