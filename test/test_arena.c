@@ -44,7 +44,7 @@ int main() {
 
   test_string_allocation(&arena);
 
-  test_int32_array(&arena, 10);
+  test_int32_array(&arena, 20);
 
   arena_debug(&arena);
   test_double_array(&arena, 10);
