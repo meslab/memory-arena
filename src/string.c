@@ -13,8 +13,8 @@ String *String_new(MemoryArena *arena, char *chars) {
   return string;
 }
 
-String *String_slice(MemoryArena *arena, String *string, size_t from,
-                     size_t length) {
+String *String_slice(MemoryArena *arena, const String *string,
+                           size_t from, size_t length) {
   if (string->length < from + length) {
     return NULL;
   }

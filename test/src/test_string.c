@@ -8,15 +8,16 @@ void test_string_allocation(MemoryArena *arena) {
 }
 
 void test_string_new(MemoryArena *arena) {
-  String *string = (String *)String_new(arena, "Hi there! I am a String!");
+  const String *const string =
+      (String *)String_new(arena, "Hi there! I am a String!");
   if (string) {
     printf("%.*s\n", (int)string->length, string->chars);
   }
 }
 
 void test_string_slice(MemoryArena *arena) {
-  String *string = (String *)String_new(arena, "Hi there! I am a String!");
-  String *slice = String_slice(arena, string, 10, 14);
+  const String *const string = (String *)String_new(arena, "Hi there! I am a String!");
+  const String *const slice = String_slice(arena, string, 10, 14);
   if (slice) {
     printf("%.*s\n", (int)slice->length, slice->chars);
   }
