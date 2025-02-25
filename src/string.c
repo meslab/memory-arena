@@ -6,9 +6,7 @@ String *String_new(MemoryArena *arena, const char *chars) {
   string->length = strlen(chars);
   string->chars = arena_alloc(arena, string->length * sizeof(char));
 
-  for (size_t i = 0; i < string->length; i++) {
-    string->chars[i] = chars[i];
-  }
+  memcpy(string->chars, chars, string->length);
 
   return string;
 }
