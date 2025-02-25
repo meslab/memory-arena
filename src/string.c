@@ -1,7 +1,7 @@
 #include "../include/string.h"
 #include <string.h>
 
-String *String_new(MemoryArena *arena, char *chars) {
+String *String_new(MemoryArena *arena, const char *chars) {
   String *string = (String *)arena_alloc(arena, sizeof(String));
   string->length = strlen(chars);
   string->chars = arena_alloc(arena, string->length * sizeof(char));
@@ -13,13 +13,13 @@ String *String_new(MemoryArena *arena, char *chars) {
   return string;
 }
 
-String *String_slice(MemoryArena *arena, const String *string,
-                           size_t from, size_t length) {
+String *String_slice(MemoryArena *arena, const String *string, size_t from,
+                     size_t length) {
   if (string->length < from + length) {
     return NULL;
   }
   String *slice = (String *)arena_alloc(arena, sizeof(String));
   slice->length = length;
-  slice->chars = string->chars + from * sizeof(char);
+  slice->chars = string->chars + from;
   return slice;
 }
