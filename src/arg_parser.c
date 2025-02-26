@@ -33,7 +33,9 @@ void parse_arguments(int argc, char *argv[], Options *opts) {
       opts->verbose = 1;
       break;
     case 'h':
-      printf("Usage: %s [-l value] [-m value] [-v] [--help]\n", argv[0]);
+      printf("Usage: %s [-l | --array-length value] [-m | --memory-arena-size "
+             "value] [-v | --verbose] [--help]\n",
+             argv[0]);
       exit(0);
     default:
       exit(1);
