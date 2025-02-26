@@ -1,4 +1,5 @@
 #include "../include/arena.h"
+#include "../include/arg_parser.h"
 #include "../include/double_array.h"
 #include "../include/int32_array.h"
 
@@ -27,12 +28,15 @@ void test_allocations(MemoryArena *arena, int32_t size) {
   double_array_print(double_array, size);
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+  Options opts;
+  parse_arguments(argc, argv, &opts);
+
   MemoryArena arena;
-  arena_init(&arena, 1024 * 1024); // 1 MB arena
+  arena_init(&arena, opts.memory_arena_size);
 
   arena_debug(&arena);
-  test_allocations(&arena, 10);
+  test_allocations(&arena, opts.array_lenght);
 
   test_string_new(&arena);
 
@@ -44,10 +48,10 @@ int main() {
 
   test_string_allocation(&arena);
 
-  test_int32_array(&arena, 20);
+  test_int32_array(&arena, opts.array_lenght);
 
   arena_debug(&arena);
-  test_double_array(&arena, 10);
+  test_double_array(&arena, opts.array_lenght);
 
   arena_debug(&arena);
   test_string_new(&arena);
