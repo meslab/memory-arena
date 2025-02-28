@@ -51,6 +51,7 @@ int main(int argc, char *argv[]) {
   test_string_unicode_from(&arena, "你好");
   test_string_unicode_from(&arena, "مرحبًا");
   test_string_unicode_from(&arena, "سلام");
+  test_string_unicode_from(&arena, "Γειά σου");
   test_string_unicode_from(&arena, "здравствуй юникод");
   arena_debug(&arena);
 
