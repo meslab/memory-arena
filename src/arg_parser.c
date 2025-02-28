@@ -17,7 +17,7 @@ void parse_arguments(int argc, char *argv[], Options *opts) {
       {0, 0, 0, 0}};
 
   int opt;
-  while ((opt = getopt_long(argc, argv, "m:l:v", long_options, NULL)) != -1) {
+  while ((opt = getopt_long(argc, argv, "m:l:vh", long_options, NULL)) != -1) {
     switch (opt) {
     case 'm':
       if (optarg) {
@@ -34,7 +34,7 @@ void parse_arguments(int argc, char *argv[], Options *opts) {
       break;
     case 'h':
       printf("Usage: %s [-l | --array-length value] [-m | --memory-arena-size "
-             "value] [-v | --verbose] [--help]\n",
+             "value] [-v | --verbose] [-h | --help]\n",
              argv[0]);
       exit(0);
     default:
