@@ -46,13 +46,22 @@ int main(int argc, char *argv[]) {
 
   test_string_slice(&arena);
 
-  test_string_unicode_new(&arena);
-
-  test_string_unicode_from(&arena, "你好");
-  test_string_unicode_from(&arena, "مرحبًا");
-  test_string_unicode_from(&arena, "سلام");
-  test_string_unicode_from(&arena, "Γειά σου");
-  test_string_unicode_from(&arena, "здравствуй юникод");
+  const char *greetings[] = {
+        "Mandarin: 你好",   // Chinese
+        "Arabic: مرحبًا",   // Arabic
+        "Pashto: سلام",     // Pashto
+        "Greek: Γειά σου",  // Greek
+        "Russian: Привет",  // Russian
+        "Japanese: こんにちは",  // Japanese
+        "Korean: 안녕하세요",   // Korean
+        "Hebrew: שלום",     // Hebrew
+        "Hindi: नमस्ते",    // Hindi
+        "Thai: สวัสดี",     // Thai
+        NULL // Sentinel value
+    }; 
+  for (size_t i = 0; greetings[i] != NULL; ++i) {
+    test_string_unicode_from(&arena, greetings[i]);
+  }
   arena_debug(&arena);
 
   arena_free(&arena);

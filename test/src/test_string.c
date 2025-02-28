@@ -23,15 +23,7 @@ void test_string_slice(MemoryArena *arena) {
   }
 }
 
-void test_string_unicode_new(MemoryArena *arena) {
-  const String *const string =
-      (String *)String_new(arena, "こんにちは");
-  if (string) {
-    printf("%.*s\n", (int)string->length, string->chars);
-  }
-}
-
-void test_string_unicode_from(MemoryArena *arena, char * input) {
+void test_string_unicode_from(MemoryArena *arena, const char * input) {
   const String *const string =
       (String *)String_new(arena, input);
   if (string) {
