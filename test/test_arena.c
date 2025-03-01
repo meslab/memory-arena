@@ -26,13 +26,13 @@ int main(int argc, char *argv[]) {
   arena_debug(&arena);
   test_allocations(&arena, opts.array_lenght);
 
-  test_string_new(&arena);
+  test_string_from(&arena);
 
   arena_debug(&arena);
   arena_reset(&arena);
 
   arena_debug(&arena);
-  test_string_new(&arena);
+  test_string_from(&arena);
 
   test_string_allocation(&arena);
 
@@ -42,23 +42,23 @@ int main(int argc, char *argv[]) {
   test_double_array(&arena, opts.array_lenght);
 
   arena_debug(&arena);
-  test_string_new(&arena);
+  test_string_from(&arena);
 
   test_string_slice(&arena);
 
   const char *greetings[] = {
-        "Mandarin: 你好",   // Chinese
-        "Arabic: مرحبًا",   // Arabic
-        "Pashto: سلام",     // Pashto
-        "Greek: Γειά σου",  // Greek
-        "Russian: Привет",  // Russian
-        "Japanese: こんにちは",  // Japanese
-        "Korean: 안녕하세요",   // Korean
-        "Hebrew: שלום",     // Hebrew
-        "Hindi: नमस्ते",    // Hindi
-        "Thai: สวัสดี",     // Thai
-        NULL // Sentinel value
-    }; 
+      "Mandarin: 你好",       // Chinese
+      "Arabic: مرحبًا",        // Arabic
+      "Pashto: سلام",         // Pashto
+      "Greek: Γειά σου",      // Greek
+      "Russian: Привет",      // Russian
+      "Japanese: こんにちは", // Japanese
+      "Korean: 안녕하세요",   // Korean
+      "Hebrew: שלום",         // Hebrew
+      "Hindi: नमस्ते",          // Hindi
+      "Thai: สวัสดี",           // Thai
+      NULL                    // Sentinel value
+  };
   for (size_t i = 0; greetings[i] != NULL; ++i) {
     test_string_unicode_from(&arena, greetings[i]);
   }

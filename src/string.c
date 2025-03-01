@@ -1,7 +1,15 @@
 #include "../include/string.h"
 #include <string.h>
 
-String *String_new(MemoryArena *arena, const char *chars) {
+String *String_new(MemoryArena *arena, size_t size) {
+  String *string = (String *)arena_alloc(arena, sizeof(String));
+  string->length = size;
+  string->chars = arena_alloc(arena, string->length * sizeof(char));
+
+  return string;
+}
+
+String *String_from(MemoryArena *arena, const char *chars) {
   String *string = (String *)arena_alloc(arena, sizeof(String));
   string->length = strlen(chars);
   string->chars = arena_alloc(arena, string->length * sizeof(char));
